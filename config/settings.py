@@ -62,6 +62,7 @@ THIRD_APPS = [
     "drf_spectacular",
     "drf_spectacular_sidecar",
     "corsheaders",
+    "cloudinary",
 ]
 PRIORITY_THIRD_APPS = [
     "jazzmin",
@@ -242,7 +243,7 @@ SPECTACULAR_SETTINGS = {
     "REDOC_DIST": "SIDECAR",
     # OTHER SETTINGS
     "COMPONENT_SPLIT_REQUEST": True,
-    # "SCHEMA_PATH_PREFIX": "/api/",
+    "SCHEMA_PATH_PREFIX": "/api/",
 }
 
 LOGGING = {
@@ -293,3 +294,17 @@ LOGGING = {
 LOAD_EXAMPLE_DATA = (
     str(os.environ.get("LOAD_EXAMPLE_DATA", default=False)).lower() == "true"
 )
+
+USE_CLOUDINARY = (
+    str(os.environ.get("USE_CLOUDINARY", default=False)).lower() == "true"
+)
+if USE_CLOUDINARY:
+    import cloudinary
+    import cloudinary.api
+    import cloudinary.uploader
+
+    cloudinary.config(
+        cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME"),
+        api_key=os.environ.get("CLOUDINARY_API_KEY"),
+        api_secret=os.environ.get("CLOUDINARY_API_SECRET"),
+    )

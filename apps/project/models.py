@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -10,7 +11,12 @@ class MotoImage(models.Model):
     Only stores the image file (besides the default id field).
     """
 
-    image = models.ImageField(upload_to="moto_images/")
+    if settings.USE_CLOUDINARY:
+        from cloudinary.models import CloudinaryField
+
+        image = CloudinaryField("image")
+    else:
+        image = models.ImageField(upload_to="moto_images/")
 
     class Meta:
         verbose_name = "Moto Image"
