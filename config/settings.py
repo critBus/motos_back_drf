@@ -65,12 +65,14 @@ THIRD_APPS = [
     "cloudinary",
 ]
 PRIORITY_THIRD_APPS = [
+    "whitenoise.runserver_nostatic",
     "jazzmin",
 ]
 INSTALLED_APPS = PRIORITY_THIRD_APPS + BASE_APPS + THIRD_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -169,7 +171,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+# STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles", "static")
 
 AUTH_USER_MODEL = "users.User"
 
@@ -182,11 +185,11 @@ JAZZMIN_SETTINGS = {
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
     "site_brand": "Administración",
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "img/logo.png",
-    # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    "login_logo": "img/logo.png",
-    # Logo to use for login form in dark themes (defaults to login_logo)
-    "login_logo_dark": "img/logo.png",
+    # "site_logo": "img/logo.png",
+    # # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
+    # "login_logo": "img/logo.png",
+    # # Logo to use for login form in dark themes (defaults to login_logo)
+    # "login_logo_dark": "img/logo.png",
     # CSS classes that are applied to the logo above
     "site_logo_classes": "",
     # Icons that are used when one is not manually specified

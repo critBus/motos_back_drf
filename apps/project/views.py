@@ -1,5 +1,4 @@
 from rest_framework import pagination, viewsets
-from rest_framework.permissions import IsAuthenticated
 
 from .models import MotoImage
 from .serializers.moto_image import MotoImageSerializer
@@ -19,5 +18,4 @@ class MotoImageViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = MotoImage.objects.all().order_by("-id")
     serializer_class = MotoImageSerializer
-    permission_classes = (IsAuthenticated,)
     pagination_class = StandardResultsSetPagination
