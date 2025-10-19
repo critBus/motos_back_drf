@@ -6,8 +6,9 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.exceptions import TokenError
+from rest_framework_simplejwt.tokens import RefreshToken
+
 from apps.users.authentication import IsTokenValid, get_acces_token
 from apps.users.models import BlackListedTokenAccess
 from apps.users.views.auth.serializers.logout.token_acces_blacklist_serializer import (
